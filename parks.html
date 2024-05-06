@@ -22,7 +22,7 @@
           <img src="images/logo.png" class="h-8" alt="Logo" />
           <span
             class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
-            >Explore the Outdoors</span
+            >Enjoy the Outdoors</span
           >
         </a>
         <button
@@ -80,13 +80,56 @@
       </div>
     </nav>
     <main>
-      <div>
-        <h3>Search:</h3>
-        <input type="radio" id="location" name="search" value="location" />
-        <label for="location">By Location</label>
-        <input type="radio" id="type" name="search" value="type" />
-        <label for="location">By Type</label>
+      <section
+        class="bg-center bg-cover bg-no-repeat bg-gray-700 bg-blend-multiply"
+        style="
+          background-image: url('https://images.pexels.com/photos/1867601/pexels-photo-1867601.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+        "
+      >
+        <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
+          <h1
+            class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl"
+          >
+            Find National Parks
+          </h1>
+          <p
+            class="mb-8 text-lg font-normal text-gray-300 lg:text-l sm:px-16 lg:px-48"
+          >
+            Ready for your next outdoor adventure? Begin by selecting your
+            desired location or park type!
+          </p>
+          <div
+            class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0"
+          >
+            <a
+              id="location"
+              class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
+            >
+              Location
+            </a>
+            <a
+              id="type"
+              class="inline-flex justify-center items-center py-3 px-5 ml-3 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
+            >
+              Type
+            </a>
+          </div>
+          <select
+            class="hidden mt-5 rounded bg-transparent text-white outline-none"
+            id="dropdown"
+          >
+            <option disabled>Choose Your Location</option>
+          </select>
+        </div>
+      </section>
+
+      <div id="parks" class="flex flex-col items-center hidden">
+        <div>
+          <p class="mb-4 mt-10 text-3xl">Results</p>
+        </div>
+
       </div>
     </main>
+    <script type="module" src="scripts/parksLocation.js"></script>
   </body>
 </html>
