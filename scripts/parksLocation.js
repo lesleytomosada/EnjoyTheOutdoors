@@ -32,7 +32,7 @@ function loadParkCards(filterData = true) {
     const parkCards = document.getElementById("parks");
     const results = document.getElementById("results");
     parkCards.innerHTML = "";   
-    dropdown.classList.add("hidden");
+    results.classList.remove("hidden");
     const selectedLocation = dropdown.value;
 
     if (filterData) {
