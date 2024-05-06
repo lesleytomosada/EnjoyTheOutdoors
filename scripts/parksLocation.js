@@ -4,7 +4,7 @@ import { nationalParksArray } from "./nationalParkData.js";
 const locationBtn = document.getElementById("location");
 const dropdown = document.getElementById("dropdown");
 const allParks = document.getElementById("all");
-let selectedParks = [];
+let selectedParks = nationalParksArray;
 
 document.addEventListener("DOMContentLoaded", (event) => {
 function populateLocationDropdown() {
@@ -41,6 +41,7 @@ function loadParkCards(filterData = true) {
         populateLocationDropdown();
         selectedParks = nationalParksArray;
     }
+    let parkCardsHTML = '';
     
     selectedParks.forEach((park) => {
         const parkCard = `
@@ -62,8 +63,10 @@ function loadParkCards(filterData = true) {
           </div>
         </div>
         </div>`
-        document.getElementById("parks").innerHTML += parkCard;
+        parkCardsHTML += parkCard;
+
     })
+    document.getElementById("parks").innerHTML += parkCardsHTML;
 
 }
 locationBtn.addEventListener("click", populateLocationDropdown);
