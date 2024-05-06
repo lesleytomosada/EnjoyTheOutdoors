@@ -3,6 +3,8 @@ import { nationalParksArray } from "./nationalParkData.js";
 
 const locationBtn = document.getElementById("location");
 const dropdown = document.getElementById("dropdown");
+const allParks = document.getElementById("all");
+let selectedParks = [];
 
 document.addEventListener("DOMContentLoaded", (event) => {
 function populateLocationDropdown() {
@@ -24,15 +26,21 @@ function populateLocationDropdown() {
   });
 }
 
-function loadParkCards() {
+function loadParkCards(filterData = true) {
     const parkCards = document.getElementById("parks");
     const results = document.getElementById("results");
     parkCards.innerHTML = "";   
     results.classList.remove("hidden");
     const selectedLocation = dropdown.value;
-    const selectedParks = nationalParksArray.filter((park) => {
-        return park.State === selectedLocation;
-    });
+
+    if (filterData) {
+        selectedParks = nationalParksArray.filter((park) => {
+            return park.State === selectedLocation;
+        });
+    } else {
+        populateLocationDropdown();
+        selectedParks = nationalParksArray;
+    }
     
     selectedParks.forEach((park) => {
         const parkCard = `
@@ -57,8 +65,8 @@ function loadParkCards() {
         document.getElementById("parks").innerHTML += parkCard;
     })
 
-
 }
 locationBtn.addEventListener("click", populateLocationDropdown);
 dropdown.addEventListener("change", loadParkCards);
+allParks.addEventListener("click", () => loadParkCards(false));
 });
