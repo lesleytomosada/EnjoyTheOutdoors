@@ -2,12 +2,14 @@ import { locationsArray } from "./locationData.js";
 import { nationalParksArray } from "./nationalParkData.js";
 
 const locationBtn = document.getElementById("location");
-const dropdown = document.getElementById("dropdown");
+const dropdown = document.getElementById("locationDropdown");
+const typeDropdown = document.getElementById("typeDropdown");
 const allParks = document.getElementById("all");
 let selectedParks = nationalParksArray;
 
 document.addEventListener("DOMContentLoaded", (event) => {
 function populateLocationDropdown() {
+  typeDropdown.classList.add("hidden");
   dropdown.classList.remove("hidden");
   dropdown.innerHTML = "";
 
@@ -31,6 +33,8 @@ function loadParkCards(filterData = true) {
     const results = document.getElementById("results");
     parkCards.innerHTML = "";   
     results.classList.remove("hidden");
+    typeDropdown.classList.add("hidden");
+    dropdown.classList.add("hidden");
     const selectedLocation = dropdown.value;
 
     if (filterData) {
