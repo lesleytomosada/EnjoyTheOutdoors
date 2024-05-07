@@ -2,9 +2,12 @@ import { mountainsArray } from "./mountainData.js"
 
 const mountains = document.getElementById("mountains")
 
-document.addEventListener("DOMContentLoaded", () => {
-    let cardList = ''
-    mountainsArray.forEach(mountain => {
+document.addEventListener("DOMContentLoaded", async () => {
+    // const sunDataPromises = mountainsArray.map(mountain => getSunData(mountain.coords.lat, mountain.coords.lng));
+    // const sunDataArray = await Promise.all(sunDataPromises);
+
+    const cardList = mountainsArray.map((mountain, index) => {
+        // const sunData = sunDataArray[index];
         const card = `          
         <div class="max-w-sm my-3 rounded overflow-hidden shadow-lg">
         <img class="w-full" src="/images/${mountain.img}" alt="${mountain.name}">
@@ -15,13 +18,19 @@ document.addEventListener("DOMContentLoaded", () => {
           </p>
           <p class="my-2">Elevation: ${mountain.elevation}</p>
           <p class="mb-2">Difficulty: ${mountain.effort}</p>
-          <p>Today's Sunrise: 6:00am</p>
-          <p>Today's Sunset: 7:00pm</p>
-
+        
         </div>
       </div>`
-      cardList += card
-    })
-    mountains.innerHTML = cardList
+      return card;
+    });
 
+    mountains.innerHTML = cardList.join('');
 });
+
+async function getSunData(lat, lng){
+    let response = await fetch(
+    `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&date=today`);
+    let data = await response.json();
+
+    return data.results;
+}
